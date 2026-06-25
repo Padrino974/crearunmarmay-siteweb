@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Crearun Marmay : catalogue de fichiers PDF imprimables, jeux et activités pour découvrir La Réunion en famille." />
+  <title>Crearun Marmay | Catalogue créole réunionnais</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bleu-ocean: #0077b6;
+      --bleu-nuit: #023e8a;
+      --bleu-lagon: #00b4d8;
+      --jaune-soleil: #ffb703;
+      --orange-volcan: #fb8500;
+      --rouge-volcan: #d62828;
+      --vert-tropical: #2a9d8f;
+      --blanc: #ffffff;
+      --gris-clair: #f4f7fb;
+      --gris: #64748b;
+      --texte: #1f2937;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
+      --radius: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--gris-clair);
+      color: var(--texte);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .announcement {
+      background: linear-gradient(90deg, var(--orange-volcan), var(--rouge-volcan));
+      color: var(--blanc);
+      text-align: center;
+      padding: 8px 7%;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      overflow: hidden;
+      background-color: #0033a0;
+      background:
+      repeating-conic-gradient(
+        from -20deg at 35% 100%,
+        #ffd200 0deg 7deg,
+        #0033a0 7deg 28deg
+      );
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      left: 35%;
+      bottom: -7px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5vw solid transparent;
+      border-right: 5vw solid transparent;
+      border-bottom: 5vh solid #d62828;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .header-inner {
+      position: relative;
+      z-index: 2;
+      padding: 14px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--blanc);
+      min-width: max-content;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.75);
+      background: var(--blanc);
+    }
+
+    .brand span {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      color: var(--blanc);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: var(--jaune-soleil);
+    }
+
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: center;
+      gap: 50px;
+      padding: 90px 7%;
+      background:
+        linear-gradient(rgba(2, 62, 138, 0.55), rgba(251, 133, 0, 0.25)),
+        url("https://images.unsplash.com/photo-1616860895045-13553f397d64?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      color: var(--blanc);
+    }
+
+    .hero-content h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.05;
+      margin-bottom: 22px;
+      text-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-content p {
+      font-size: 17px;
+      max-width: 660px;
+      margin-bottom: 28px;
+      color: #f8fafc;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .btn {
+      background: linear-gradient(90deg, var(--orange-volcan), var(--rouge-volcan));
+      color: var(--blanc);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--bleu-nuit);
+    }
+
+    .btn:hover,
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      opacity: 0.96;
+    }
+
+
+    .hero-featured {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero-featured .hero-box {
+      padding: 22px;
+    }
+
+    .hero-featured .hero-box img {
+      height: 230px;
+    }
+
+    .hero-box {
+      background: rgba(255, 255, 255, 0.17);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .hero-box img {
+      width: 100%;
+      border-radius: 22px;
+      margin-bottom: 20px;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .hero-box h2 {
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .hero-box .price-mini {
+      display: inline-block;
+      margin-top: 16px;
+      background: var(--jaune-soleil);
+      color: var(--texte);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 86px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(30px, 4vw, 42px);
+      color: var(--bleu-ocean);
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--gris);
+      margin: 0 auto 46px;
+      max-width: 760px;
+    }
+
+    .categories,
+    .products,
+    .advantages,
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 28px;
+    }
+
+    .card,
+    .product-card,
+    .advantage-card,
+    .review-card {
+      background: var(--blanc);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before,
+    .product-card::before,
+    .advantage-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--jaune-soleil), var(--orange-volcan), var(--rouge-volcan));
+    }
+
+    .card:hover,
+    .product-card:hover,
+    .advantage-card:hover,
+    .review-card:hover {
+      transform: translateY(-7px);
+    }
+
+    .card h3,
+    .advantage-card h3 {
+      margin-bottom: 12px;
+      color: var(--orange-volcan);
+      font-size: 22px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .filter-btn {
+      border: 1px solid rgba(0, 119, 182, 0.18);
+      background: var(--blanc);
+      color: var(--bleu-ocean);
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      color: var(--blanc);
+      background: linear-gradient(90deg, var(--bleu-ocean), var(--vert-tropical));
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      background: #e2e8f0;
+    }
+
+    .product-card h3 {
+      color: var(--bleu-ocean);
+      margin-bottom: 10px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .product-card p {
+      color: #475569;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: auto 0 16px;
+    }
+
+    .tag {
+      background: #e0f7fb;
+      color: var(--bleu-nuit);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .price {
+      color: var(--rouge-volcan);
+      font-size: 24px;
+      font-weight: 800;
+      margin: 4px 0 16px;
+    }
+
+    .small-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(90deg, var(--bleu-ocean), var(--vert-tropical));
+      color: var(--blanc);
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .small-btn:hover {
+      transform: scale(1.02);
+    }
+
+    .promo-wrap {
+      padding-top: 20px;
+    }
+
+    .promo {
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.45)),
+        url("https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      border-radius: 30px;
+      text-align: center;
+      padding: 70px 40px;
+      color: var(--blanc);
+      box-shadow: var(--shadow);
+    }
+
+    .promo h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      margin-bottom: 18px;
+    }
+
+    .promo p {
+      max-width: 760px;
+      margin: auto auto 30px;
+      color: #f8fafc;
+    }
+
+    .advantage-card p,
+    .review-card p {
+      color: #475569;
+    }
+
+    .review-card {
+      border-left: 5px solid var(--orange-volcan);
+    }
+
+    .review-card p {
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+
+    .review-card strong {
+      color: var(--bleu-ocean);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .contact-info,
+    .contact-form {
+      background: var(--blanc);
+      padding: 34px;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-info h3 {
+      color: var(--orange-volcan);
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    .contact-info ul {
+      list-style: none;
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-info li {
+      background: var(--gris-clair);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--bleu-nuit);
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      padding: 15px;
+      border-radius: 14px;
+      border: 1px solid #dbe4ee;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s ease;
+      background: var(--blanc);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus {
+      border-color: var(--bleu-lagon);
+      box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.15);
+    }
+
+    footer {
+      background: linear-gradient(90deg, var(--bleu-ocean), var(--bleu-nuit));
+      color: var(--blanc);
+      text-align: center;
+      padding: 30px 7%;
+      margin-top: 30px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      .header-inner {
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .hero,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 70px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      section {
+        padding: 64px 5%;
+      }
+
+      .header-inner {
+        padding: 12px 5%;
+      }
+
+      nav a {
+        font-size: 13px;
+        padding: 8px 10px;
+      }
+
+      .hero {
+        padding: 60px 5%;
+      }
+
+      .hero-box img {
+        height: 240px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info,
+      .contact-form {
+        padding: 24px;
+      }
+    }
+
+    .jeux-embed-wrap {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--blanc);
+      border-radius: 34px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .jeux-embed {
+      width: 100%;
+      height: 820px;
+      border: 0;
+      border-radius: 28px;
+      background: var(--gris-clair);
+      display: block;
+    }
+
+    @media (max-width: 620px) {
+      .jeux-embed-wrap {
+        padding: 10px;
+        border-radius: 26px;
+      }
+
+      .jeux-embed {
+        height: 780px;
+        border-radius: 22px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="announcement">🌺 Catalogue de produits numériques PDF — à découvrir et acheter facilement sur Beacons.</div>
+
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="#accueil" aria-label="Retour à l'accueil Crearun Marmay">
+        <img src="https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/profile_crearunmarmay.png?q=1776344948.8663857" alt="Logo Crearun Marmay" />
+        <span>🌴 Crearun Marmay</span>
+      </a>
+
+      <nav aria-label="Navigation principale">
+        <a href="#accueil">Accueil</a>
+        <a href="#categories">Catégories</a>
+        <a href="#produits">Produits</a>
+        <a href="#jeux">Jeux</a>
+        <a href="#services">Services</a>
+        <a href="#avis">Avis</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="hero-content">
+        <h1>Bienvenue dans mon univers péi 🌴</h1>
+        <p>
+          Une boutique portée par une Réunionnaise vivant en métropole, avec l’envie de faire découvrir et partager la culture réunionnaise aux enfants, aux familles et aux curieux.
+          Nou espère ou va aime ce voyage. À très bientôt pour de nouvelles découvertes péi !
+        </p>
+        <div class="hero-actions">
+          <a href="#produits" class="btn">Découvrir le catalogue</a>
+          <a href="#contact" class="btn-secondary">Faire une demande</a>
+        </div>
+      </div>
+
+      <aside class="hero-featured" aria-label="Produits mis en avant">
+        <div class="hero-box">
+          <img src="https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/referenced_images/generated-images__store__product-image__ee22891f-3188-4268-bc0a-d27ccfe87990__8b7a4cf4-e752-4bd4-88b6-8b6fbbba7e93.webp?t=1779707444496" alt="Pack Momon Péi" />
+          <h2>🌺 Pack Momon Péi</h2>
+          <p>Un pack rempli de douceur, de souvenirs péi et d’activités à imprimer pour faire plaisir à une maman créole ou se faire plaisir.</p>
+          <a class="price-mini" href="https://shop.beacons.ai/crearunmarmay/ee22891f-3188-4268-bc0a-d27ccfe87990?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Fcrearunmarmay&show_back_button=true" target="_blank" rel="noopener">Acheter sur Beacons 🌺</a>
+        </div>
+
+        <div class="hero-box">
+          <img src="https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/referenced_images/5af4fc02-d1af-4aae-85f5-07ad6f72cff4__store__product-image__2814ea32-8931-46fb-b268-bc3afcbae04e__ec609064-3b5a-4b8f-a571-3d04fedbd31b.webp?t=1781871885737" alt="Pack Papa Péi" />
+          <h2>🌋 Pack Papa Péi</h2>
+          <p>Un pack rempli d’émotions et de souvenirs péi pour faire plaisir à un papa créole ou se faire plaisir.</p>
+          <a class="price-mini" href="https://shop.beacons.ai/crearunmarmay/2814ea32-8931-46fb-b268-bc3afcbae04e?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Fcrearunmarmay&show_back_button=true" target="_blank" rel="noopener">Acheter sur Beacons 🌋</a>
+        </div>
+      </aside>
+    </section>
+
+    <section id="categories">
+      <h2 class="section-title">Catégories</h2>
+      <p class="section-subtitle">Des créations numériques inspirées de La Réunion, pensées pour apprendre, jouer, transmettre et s’organiser.</p>
+
+      <div class="categories">
+        <article class="card">
+          <h3>📚 Activités marmay</h3>
+          <p>Fichiers éducatifs pour découvrir la culture, les paysages, les animaux et les mots de La Réunion.</p>
+        </article>
+        <article class="card">
+          <h3>🎲 Jeux créoles</h3>
+          <p>Jeux d’observation, de mémoire et de questions/réponses pour apprendre en s’amusant.</p>
+        </article>
+        <article class="card">
+          <h3>💛 Cadeaux péi</h3>
+          <p>Packs doux et personnalisés à imprimer pour offrir un petit bout de La Réunion.</p>
+        </article>
+        <article class="card">
+          <h3>🗓️ Organisation</h3>
+          <p>Supports pratiques en créole réunionnais pour organiser la semaine, les repas et les komissions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="produits">
+      <h2 class="section-title">Produits populaires</h2>
+      <p class="section-subtitle">Tous les produits sont présentés en format digital PDF. Clique sur “Acheter sur Beacons” pour ouvrir directement la fiche du produit.</p>
+
+      <div class="filters" aria-label="Filtres produits">
+        <button class="filter-btn active" type="button" data-filter="all">Tous</button>
+        <button class="filter-btn" type="button" data-filter="activite">Activités</button>
+        <button class="filter-btn" type="button" data-filter="jeu">Jeux</button>
+        <button class="filter-btn" type="button" data-filter="cadeau">Cadeaux</button>
+        <button class="filter-btn" type="button" data-filter="organisation">Organisation</button>
+      </div>
+
+      <div class="products" id="product-list"></div>
+    </section>
+
+    <section class="promo-wrap">
+      <div class="promo">
+        <h2>🌋 Une touche de La Réunion à imprimer chez toi</h2>
+        <p>Des fichiers PDF simples, colorés et prêts à utiliser pour transmettre la culture réunionnaise aux marmay, même loin de l’île.</p>
+        <a href="#produits" class="btn">Voir le catalogue</a>
+      </div>
+    </section>
+
+
+    <section id="jeux">
+      <h2 class="section-title">Coin des Mini Explorateurs 🎮</h2>
+      <p class="section-subtitle">Le jeu s’ouvre directement ici, sur la même page, sans quitter le site.</p>
+
+      <div class="jeux-embed-wrap">
+        <iframe
+          class="jeux-embed"
+          title="Coin des Mini Explorateurs"
+          loading="lazy"
+          srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;fr&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, user-scalable=no&quot; /&gt;
+  &lt;meta name=&quot;theme-color&quot; content=&quot;#0077b6&quot; /&gt;
+  &lt;title&gt;Coin des Mini Explorateurs&lt;/title&gt;
+  &lt;style&gt;
+    :root{--bleu:#0077b6;--nuit:#023e8a;--lagon:#00b4d8;--jaune:#ffb703;--orange:#fb8500;--rouge:#d62828;--vert:#2a9d8f;--fond:#f4f7fb;--txt:#1f2937;--blanc:#fff;--shadow:0 12px 35px rgba(15,23,42,.14);--radius:26px}
+    *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;-webkit-tap-highlight-color:transparent}
+    body{background:linear-gradient(180deg,#e0f7fb,var(--fond));color:var(--txt);min-height:100vh;overflow-x:hidden}
+    .app{max-width:520px;margin:0 auto;min-height:100vh;background:var(--fond);box-shadow:0 0 60px rgba(0,0,0,.10);position:relative;padding-bottom:88px}
+    header{position:sticky;top:0;z-index:10;background:linear-gradient(135deg,var(--bleu),var(--nuit));color:#fff;padding:18px 18px 16px;border-radius:0 0 28px 28px;box-shadow:var(--shadow)}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:10px}.logo{width:48px;height:48px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:28px}.brand h1{font-size:20px;line-height:1.1}.brand small{opacity:.9}.scorepill{background:rgba(255,255,255,.18);padding:8px 12px;border-radius:999px;font-weight:800}
+    .hero{padding:18px}.hero-card{background:linear-gradient(135deg,var(--orange),var(--rouge));color:#fff;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero-card:after{content:&#x27;🌋&#x27;;position:absolute;right:-12px;bottom:-22px;font-size:100px;opacity:.22}.hero h2{font-size:28px;line-height:1.08;margin-bottom:10px}.hero p{opacity:.95;margin-bottom:16px}.btn{border:0;border-radius:18px;padding:14px 18px;font-weight:900;cursor:pointer;background:#fff;color:var(--nuit);box-shadow:var(--shadow)}.btn.primary{background:linear-gradient(90deg,var(--bleu),var(--vert));color:#fff}.btn.danger{background:linear-gradient(90deg,var(--orange),var(--rouge));color:#fff}.btn:active{transform:scale(.97)}
+    .section{padding:8px 18px 24px}.section h2{font-size:22px;color:var(--bleu);margin-bottom:12px}.games{display:grid;gap:14px}.game-card{border:0;text-align:left;background:#fff;border-radius:24px;padding:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;cursor:pointer}.game-card .emoji{width:54px;height:54px;border-radius:18px;background:#e0f7fb;display:grid;place-items:center;font-size:30px}.game-card h3{font-size:17px;color:var(--nuit)}.game-card p{font-size:13px;color:#64748b}.arrow{font-size:24px;color:var(--orange)}
+    .screen{display:none;padding:18px}.screen.active{display:block}.game-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}.back{border:0;border-radius:14px;background:#fff;padding:10px 13px;box-shadow:var(--shadow);font-weight:900}.panel{background:#fff;border-radius:26px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px}.progress{height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin:10px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--bleu),var(--vert));transition:.25s}.choices{display:grid;gap:10px;margin-top:14px}.choice{border:2px solid #e2e8f0;background:#fff;border-radius:18px;padding:14px;font-weight:800;text-align:left}.choice.correct{border-color:var(--vert);background:#e7fff7}.choice.wrong{border-color:var(--rouge);background:#fff1f1}.feedback{font-weight:900;min-height:28px;color:var(--bleu);margin-top:12px}
+    .memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.tile{height:70px;border:0;border-radius:18px;background:linear-gradient(135deg,var(--bleu),var(--lagon));box-shadow:var(--shadow);font-size:30px;color:#fff}.tile.open,.tile.done{background:#fff;color:var(--txt)}
+    .spot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.spot{height:92px;border:0;border-radius:20px;background:#fff;border:3px solid #e2e8f0;font-size:42px;box-shadow:var(--shadow)}.spot.found{border-color:var(--vert);background:#e7fff7}.timer{font-size:32px;font-weight:900;color:var(--rouge)}
+    .color-wrap{display:grid;gap:14px}.palette{display:flex;gap:10px;flex-wrap:wrap}.color{width:42px;height:42px;border-radius:50%;border:4px solid #fff;box-shadow:var(--shadow)}.canvas{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.paint{height:74px;border:2px solid #dbe4ee;border-radius:16px;background:#fff;font-size:30px}.bottom-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);max-width:520px;width:100%;background:#fff;padding:10px 12px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;box-shadow:0 -10px 30px rgba(15,23,42,.14);border-radius:24px 24px 0 0}.navbtn{border:0;background:#f1f5f9;border-radius:16px;padding:9px 4px;font-size:12px;font-weight:800;color:#475569}.navbtn.active{background:linear-gradient(90deg,var(--bleu),var(--vert));color:#fff}.install{position:fixed;right:18px;bottom:92px;z-index:20;display:none}
+    .badge-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.badge{background:#fff;border-radius:18px;padding:14px;box-shadow:var(--shadow);font-weight:800}.muted{color:#64748b;font-size:14px}.hidden{display:none!important}
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;app&quot;&gt;
+  &lt;header&gt;&lt;div class=&quot;top&quot;&gt;&lt;div class=&quot;brand&quot;&gt;&lt;div class=&quot;logo&quot;&gt;🌴&lt;/div&gt;&lt;div&gt;&lt;h1&gt;Coin des Mini Explorateurs&lt;/h1&gt;&lt;small&gt;Découvre notre univers à travers des jeux amusants et profite d&#x27;un aperçu de nos activité inspirées de la Réunion.&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;scorepill&quot;&gt;⭐ &lt;span id=&quot;scoreTotal&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/header&gt;
+  &lt;main&gt;
+    &lt;section id=&quot;home&quot; class=&quot;screen active&quot;&gt;
+      &lt;div class=&quot;hero&quot;&gt;&lt;div class=&quot;hero-card&quot;&gt;&lt;h2&gt;Joue, apprends, découvre La Réunion&lt;/h2&gt;&lt;p&gt;Découvre notre univers à travers des jeux amusants et profite d&#x27;un aperçu de nos activités inspirées de la Réunion.&lt;/p&gt;&lt;button class=&quot;btn&quot; onclick=&quot;showScreen(&#x27;games&#x27;)&quot;&gt;Commencer 🎮&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;section&quot;&gt;&lt;h2&gt;Progression&lt;/h2&gt;&lt;div class=&quot;badge-list&quot;&gt;&lt;div class=&quot;badge&quot;&gt;Quiz péi&lt;br&gt;&lt;span class=&quot;muted&quot; id=&quot;bestQuiz&quot;&gt;0 bonne réponse&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;badge&quot;&gt;Memory&lt;br&gt;&lt;span class=&quot;muted&quot; id=&quot;bestMemory&quot;&gt;0 partie&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;badge&quot;&gt;Observation&lt;br&gt;&lt;span class=&quot;muted&quot; id=&quot;bestSpot&quot;&gt;0 victoire&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;badge&quot;&gt;Création&lt;br&gt;&lt;span class=&quot;muted&quot; id=&quot;bestPaint&quot;&gt;0 dessin&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/section&gt;
+    &lt;section id=&quot;games&quot; class=&quot;screen&quot;&gt;&lt;div class=&quot;section&quot;&gt;&lt;h2&gt;Choisis ton jeu&lt;/h2&gt;&lt;div class=&quot;games&quot;&gt;
+      &lt;button class=&quot;game-card&quot; onclick=&quot;startQuiz()&quot;&gt;&lt;span class=&quot;emoji&quot;&gt;❓&lt;/span&gt;&lt;span&gt;&lt;h3&gt;Quiz péi&lt;/h3&gt;&lt;p&gt;Questions/réponses sur La Réunion.&lt;/p&gt;&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;›&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;game-card&quot; onclick=&quot;startMemory()&quot;&gt;&lt;span class=&quot;emoji&quot;&gt;🧠&lt;/span&gt;&lt;span&gt;&lt;h3&gt;Rode l’autre pareil&lt;/h3&gt;&lt;p&gt;Memory créole avec symboles péi.&lt;/p&gt;&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;›&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;game-card&quot; onclick=&quot;startSpot()&quot;&gt;&lt;span class=&quot;emoji&quot;&gt;👀&lt;/span&gt;&lt;span&gt;&lt;h3&gt;Zot y trouve ?&lt;/h3&gt;&lt;p&gt;Trouve les bons symboles avant la fin.&lt;/p&gt;&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;›&lt;/span&gt;&lt;/button&gt;
+      &lt;button class=&quot;game-card&quot; onclick=&quot;startPaint()&quot;&gt;&lt;span class=&quot;emoji&quot;&gt;🎨&lt;/span&gt;&lt;span&gt;&lt;h3&gt;Activité marmay&lt;/h3&gt;&lt;p&gt;Mini coloriage tactile façon PDF animé.&lt;/p&gt;&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;›&lt;/span&gt;&lt;/button&gt;
+    &lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+    &lt;section id=&quot;quiz&quot; class=&quot;screen&quot;&gt;&lt;div class=&quot;game-head&quot;&gt;&lt;button class=&quot;back&quot; onclick=&quot;showScreen(&#x27;games&#x27;)&quot;&gt;←&lt;/button&gt;&lt;h2&gt;Quiz péi&lt;/h2&gt;&lt;strong id=&quot;quizCount&quot;&gt;&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;panel&quot;&gt;&lt;div class=&quot;progress&quot;&gt;&lt;div id=&quot;quizBar&quot; class=&quot;bar&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;h3 id=&quot;question&quot;&gt;&lt;/h3&gt;&lt;div id=&quot;choices&quot; class=&quot;choices&quot;&gt;&lt;/div&gt;&lt;div id=&quot;feedback&quot; class=&quot;feedback&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+    &lt;section id=&quot;memory&quot; class=&quot;screen&quot;&gt;&lt;div class=&quot;game-head&quot;&gt;&lt;button class=&quot;back&quot; onclick=&quot;showScreen(&#x27;games&#x27;)&quot;&gt;←&lt;/button&gt;&lt;h2&gt;Memory créole&lt;/h2&gt;&lt;strong&gt;Coups : &lt;span id=&quot;moves&quot;&gt;0&lt;/span&gt;&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;panel&quot;&gt;&lt;div id=&quot;memoryGrid&quot; class=&quot;memory-grid&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+    &lt;section id=&quot;spot&quot; class=&quot;screen&quot;&gt;&lt;div class=&quot;game-head&quot;&gt;&lt;button class=&quot;back&quot; onclick=&quot;showScreen(&#x27;games&#x27;)&quot;&gt;←&lt;/button&gt;&lt;h2&gt;Zot y trouve ?&lt;/h2&gt;&lt;div class=&quot;timer&quot; id=&quot;timer&quot;&gt;20&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;panel&quot;&gt;&lt;h3 id=&quot;targetText&quot;&gt;Trouve...&lt;/h3&gt;&lt;p class=&quot;muted&quot;&gt;Tape tous les symboles demandés.&lt;/p&gt;&lt;div id=&quot;spotGrid&quot; class=&quot;spot-grid&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+    &lt;section id=&quot;paint&quot; class=&quot;screen&quot;&gt;&lt;div class=&quot;game-head&quot;&gt;&lt;button class=&quot;back&quot; onclick=&quot;showScreen(&#x27;games&#x27;)&quot;&gt;←&lt;/button&gt;&lt;h2&gt;Coloriage péi&lt;/h2&gt;&lt;button class=&quot;back&quot; onclick=&quot;resetPaint()&quot;&gt;Reset&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;panel color-wrap&quot;&gt;&lt;p&gt;Choisis une couleur et touche les cases pour créer ton motif.&lt;/p&gt;&lt;div id=&quot;palette&quot; class=&quot;palette&quot;&gt;&lt;/div&gt;&lt;div id=&quot;canvas&quot; class=&quot;canvas&quot;&gt;&lt;/div&gt;&lt;button class=&quot;btn primary&quot; onclick=&quot;savePaint()&quot;&gt;Valider mon dessin ⭐&lt;/button&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;/main&gt;
+  &lt;button id=&quot;installBtn&quot; class=&quot;btn danger install&quot;&gt;Installer&lt;/button&gt;
+  &lt;nav class=&quot;bottom-nav&quot;&gt;&lt;button class=&quot;navbtn active&quot; onclick=&quot;showScreen(&#x27;home&#x27;)&quot;&gt;Accueil&lt;/button&gt;&lt;button class=&quot;navbtn&quot; onclick=&quot;showScreen(&#x27;games&#x27;)&quot;&gt;Jeux&lt;/button&gt;&lt;button class=&quot;navbtn&quot; onclick=&quot;startQuiz()&quot;&gt;Quiz&lt;/button&gt;&lt;button class=&quot;navbtn&quot; onclick=&quot;startMemory()&quot;&gt;Memory&lt;/button&gt;&lt;/nav&gt;
+&lt;/div&gt;
+&lt;script&gt;
+const $=id=&gt;document.getElementById(id);let state=JSON.parse(localStorage.getItem(&#x27;coinMiniExplorateursGames&#x27;))||{score:0,bestQuiz:0,bestMemory:0,bestSpot:0,bestPaint:0};
+function save(){localStorage.setItem(&#x27;coinMiniExplorateursGames&#x27;,JSON.stringify(state));renderStats()}function addScore(n){state.score+=n;save()}function renderStats(){$(&#x27;scoreTotal&#x27;).textContent=state.score;$(&#x27;bestQuiz&#x27;).textContent=state.bestQuiz+&#x27; bonne(s) réponse(s)&#x27;;$(&#x27;bestMemory&#x27;).textContent=state.bestMemory+&#x27; partie(s) gagnée(s)&#x27;;$(&#x27;bestSpot&#x27;).textContent=state.bestSpot+&#x27; victoire(s)&#x27;;$(&#x27;bestPaint&#x27;).textContent=state.bestPaint+&#x27; dessin(s)&#x27;}
+function showScreen(id){document.querySelectorAll(&#x27;.screen&#x27;).forEach(s=&gt;s.classList.remove(&#x27;active&#x27;));$(id).classList.add(&#x27;active&#x27;);document.querySelectorAll(&#x27;.navbtn&#x27;).forEach(b=&gt;b.classList.remove(&#x27;active&#x27;));}
+const questions=[{q:&#x27;Quel volcan est célèbre à La Réunion ?&#x27;,c:[&#x27;Piton de la Fournaise&#x27;,&#x27;Mont Blanc&#x27;,&#x27;Etna&#x27;],a:0},{q:&#x27;Comment appelle-t-on souvent les enfants en créole réunionnais ?&#x27;,c:[&#x27;Marmay&#x27;,&#x27;Ti rois&#x27;,&#x27;Minots&#x27;],a:0},{q:&#x27;Quel fruit est très présent dans les desserts péi ?&#x27;,c:[&#x27;Letchi&#x27;,&#x27;Fraise des bois&#x27;,&#x27;Myrtille&#x27;],a:0},{q:&#x27;Le mot “komission” veut dire...&#x27;,c:[&#x27;Courses&#x27;,&#x27;Devoirs&#x27;,&#x27;Vacances&#x27;],a:0},{q:&#x27;La Réunion se trouve dans...&#x27;,c:[&#x27;L’océan Indien&#x27;,&#x27;La mer Méditerranée&#x27;,&#x27;L’océan Atlantique&#x27;],a:0}];let qi=0,qs=0;
+function startQuiz(){qi=0;qs=0;showScreen(&#x27;quiz&#x27;);drawQuiz()}function drawQuiz(){if(qi&gt;=questions.length){$(&#x27;question&#x27;).textContent=&#x27;Bravo ! Score : &#x27;+qs+&#x27;/&#x27;+questions.length;$(&#x27;choices&#x27;).innerHTML=&#x27;&lt;button class=&quot;btn primary&quot; onclick=&quot;startQuiz()&quot;&gt;Rejouer&lt;/button&gt;&#x27;;$(&#x27;feedback&#x27;).textContent=&#x27;&#x27;;state.bestQuiz=Math.max(state.bestQuiz,qs);addScore(qs*10);return}let q=questions[qi];$(&#x27;quizCount&#x27;).textContent=(qi+1)+&#x27;/&#x27;+questions.length;$(&#x27;quizBar&#x27;).style.width=(qi/questions.length*100)+&#x27;%&#x27;;$(&#x27;question&#x27;).textContent=q.q;$(&#x27;feedback&#x27;).textContent=&#x27;&#x27;;$(&#x27;choices&#x27;).innerHTML=&#x27;&#x27;;q.c.forEach((txt,i)=&gt;{let b=document.createElement(&#x27;button&#x27;);b.className=&#x27;choice&#x27;;b.textContent=txt;b.onclick=()=&gt;answerQuiz(b,i===q.a);$(&#x27;choices&#x27;).appendChild(b)})}
+function answerQuiz(btn,ok){document.querySelectorAll(&#x27;.choice&#x27;).forEach(b=&gt;b.disabled=true);btn.classList.add(ok?&#x27;correct&#x27;:&#x27;wrong&#x27;);if(ok){qs++;$(&#x27;feedback&#x27;).textContent=&#x27;Bien joué ! 🌺&#x27;}else{$(&#x27;feedback&#x27;).textContent=&#x27;Presque ! Continue 💪&#x27;}setTimeout(()=&gt;{qi++;drawQuiz()},850)}
+let first=null,lock=false,moves=0;const symbols=[&#x27;🌋&#x27;,&#x27;🌴&#x27;,&#x27;🐢&#x27;,&#x27;🍍&#x27;,&#x27;🌺&#x27;,&#x27;🥁&#x27;,&#x27;🦎&#x27;,&#x27;🌊&#x27;];
+function startMemory(){showScreen(&#x27;memory&#x27;);moves=0;first=null;lock=false;$(&#x27;moves&#x27;).textContent=0;let arr=[...symbols,...symbols].sort(()=&gt;Math.random()-.5);$(&#x27;memoryGrid&#x27;).innerHTML=&#x27;&#x27;;arr.forEach((s,i)=&gt;{let b=document.createElement(&#x27;button&#x27;);b.className=&#x27;tile&#x27;;b.dataset.v=s;b.textContent=&#x27;?&#x27;;b.onclick=()=&gt;flip(b);$(&#x27;memoryGrid&#x27;).appendChild(b)})}
+function flip(b){if(lock||b.classList.contains(&#x27;open&#x27;)||b.classList.contains(&#x27;done&#x27;))return;b.classList.add(&#x27;open&#x27;);b.textContent=b.dataset.v;if(!first){first=b;return}moves++;$(&#x27;moves&#x27;).textContent=moves;if(first.dataset.v===b.dataset.v){first.classList.add(&#x27;done&#x27;);b.classList.add(&#x27;done&#x27;);first=null;if(document.querySelectorAll(&#x27;.tile.done&#x27;).length===16){state.bestMemory++;addScore(Math.max(20,120-moves*3));alert(&#x27;Gagné ! 🌴&#x27;)}}else{lock=true;setTimeout(()=&gt;{first.classList.remove(&#x27;open&#x27;);b.classList.remove(&#x27;open&#x27;);first.textContent=&#x27;?&#x27;;b.textContent=&#x27;?&#x27;;first=null;lock=false},700)}}
+let spotTimer=null,need=[];function startSpot(){showScreen(&#x27;spot&#x27;);clearInterval(spotTimer);let pool=[&#x27;🌋&#x27;,&#x27;🌴&#x27;,&#x27;🐢&#x27;,&#x27;🍍&#x27;,&#x27;🌺&#x27;,&#x27;🥁&#x27;,&#x27;🦎&#x27;,&#x27;🌊&#x27;,&#x27;🐠&#x27;];need=[&#x27;🌋&#x27;,&#x27;🌺&#x27;,&#x27;🐢&#x27;];$(&#x27;targetText&#x27;).textContent=&#x27;Trouve : &#x27;+need.join(&#x27; &#x27;);let arr=[...pool,...need].sort(()=&gt;Math.random()-.5).slice(0,9);$(&#x27;spotGrid&#x27;).innerHTML=&#x27;&#x27;;arr.forEach(s=&gt;{let b=document.createElement(&#x27;button&#x27;);b.className=&#x27;spot&#x27;;b.textContent=s;b.onclick=()=&gt;tapSpot(b,s);$(&#x27;spotGrid&#x27;).appendChild(b)});let t=20;$(&#x27;timer&#x27;).textContent=t;spotTimer=setInterval(()=&gt;{t--;$(&#x27;timer&#x27;).textContent=t;if(t&lt;=0){clearInterval(spotTimer);alert(&#x27;Temps fini ! Recommence 🌊&#x27;)}},1000)}
+function tapSpot(b,s){if(!need.includes(s)||b.classList.contains(&#x27;found&#x27;))return;b.classList.add(&#x27;found&#x27;);need.splice(need.indexOf(s),1);if(need.length===0){clearInterval(spotTimer);state.bestSpot++;addScore(50);alert(&#x27;Zot la trouvé ! ⭐&#x27;)}}
+let currentColor=&#x27;#ffb703&#x27;;const colors=[&#x27;#ffb703&#x27;,&#x27;#fb8500&#x27;,&#x27;#d62828&#x27;,&#x27;#0077b6&#x27;,&#x27;#2a9d8f&#x27;,&#x27;#ffffff&#x27;];
+function startPaint(){showScreen(&#x27;paint&#x27;);drawPaint()}function drawPaint(){$(&#x27;palette&#x27;).innerHTML=&#x27;&#x27;;colors.forEach(c=&gt;{let b=document.createElement(&#x27;button&#x27;);b.className=&#x27;color&#x27;;b.style.background=c;b.onclick=()=&gt;currentColor=c;$(&#x27;palette&#x27;).appendChild(b)});if(!$(&#x27;canvas&#x27;).children.length)resetPaint()}function resetPaint(){$(&#x27;canvas&#x27;).innerHTML=&#x27;&#x27;;[&#x27;🌴&#x27;,&#x27;🌋&#x27;,&#x27;🌺&#x27;,&#x27;🐢&#x27;,&#x27;🌊&#x27;,&#x27;☀️&#x27;,&#x27;🍍&#x27;,&#x27;🥁&#x27;,&#x27;🦎&#x27;,&#x27;🐠&#x27;,&#x27;🏝️&#x27;,&#x27;❤️&#x27;].forEach(e=&gt;{let b=document.createElement(&#x27;button&#x27;);b.className=&#x27;paint&#x27;;b.textContent=e;b.onclick=()=&gt;b.style.background=currentColor;$(&#x27;canvas&#x27;).appendChild(b)})}function savePaint(){state.bestPaint++;addScore(25);alert(&#x27;Dessin validé ! 🌺&#x27;);save()}
+let deferredPrompt;window.addEventListener(&#x27;beforeinstallprompt&#x27;,e=&gt;{e.preventDefault();deferredPrompt=e;$(&#x27;installBtn&#x27;).style.display=&#x27;block&#x27;});$(&#x27;installBtn&#x27;).onclick=async()=&gt;{if(deferredPrompt){deferredPrompt.prompt();deferredPrompt=null;$(&#x27;installBtn&#x27;).style.display=&#x27;none&#x27;}};renderStats();
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;">
+        </iframe>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2 class="section-title">Pourquoi choisir Crearun Marmay ?</h2>
+      <p class="section-subtitle">Un catalogue moderne avec une ambiance chaleureuse, familiale et locale.</p>
+
+      <div class="advantages">
+        <article class="advantage-card">
+          <h3>📥 Téléchargement rapide</h3>
+          <p>Les produits sont numériques : chaque fiche permet d’ouvrir directement le produit sur Beacons.</p>
+        </article>
+        <article class="advantage-card">
+          <h3>🔎 Recherche simple</h3>
+          <p>Chaque produit dispose d’un lien Beacons direct pour acheter ou consulter sa fiche.</p>
+        </article>
+        <article class="advantage-card">
+          <h3>💬 Support humain</h3>
+          <p>Une boutique pensée avec amour, pour répondre aux familles, enseignants et amoureux de La Réunion.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="avis">
+      <h2 class="section-title">Avis clients</h2>
+      <p class="section-subtitle">Les retours de notre communauté.</p>
+
+      <div class="reviews">
+        <article class="review-card">
+          <p>“Très belle identité réunionnaise, ça fait plaisir de retrouver nos mots et nos souvenirs.”</p>
+          <strong>— Sarah</strong>
+        </article>
+        <article class="review-card">
+          <p>“Les activités sont pratiques à imprimer et les enfants ont adoré découvrir La Réunion.”</p>
+          <strong>— Karim</strong>
+        </article>
+        <article class="review-card">
+          <p>“Le site est propre, moderne et la boutique est bien organisée.”</p>
+          <strong>— Emma</strong>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact & Demande</h2>
+      <p class="section-subtitle">Remplis le formulaire pour poser une question ou demander plus d’informations.</p>
+
+      <div class="contact-layout">
+        <aside class="contact-info">
+          <h3>Besoin d’une information ? Acheter un produit</h3>
+          <p>Choisis un produit dans le formulaire ou utilise les liens Beacons présents sur les fiches produits pour retrouver rapidement ce que tu cherches.</p>
+          <ul>
+                      <li style="margin-bottom:15px;">
+            🌴 Beacons :
+            <a href="https://beacons.ai/crearunmarmay" target="_blank">
+              beacons.ai/crearunmarmay
+            </a>
+            <li>🌺 Produits PDF imprimables</li>
+            <li>💛 Créations inspirées de La Réunion</li>
+            <li>🌴 Liens Beacons directs pour chaque produit</li>
+            <li>✉️ Formulaire de contact simple</li>
+          </ul>
+        </aside>
+
+      <div class="contact-info" style="max-width:700px;margin:auto;text-align:center;">
+        <h3>📞 Contactez Crearun Marmay</h3>
+
+        <p>
+          Une question, une demande ou envie d'en savoir plus sur nos créations ?
+          Retrouvez-nous sur nos différents supports :
+        </p>
+
+        <ul style="list-style:none;padding:0;margin-top:25px;">
+          <li style="margin-bottom:15px;">
+            📧 Email :
+            <a href="mailto:crearunmarmay@outlook.com">
+              crearunmarmay@outlook.com
+            </a>
+          </li>
+
+          <li style="margin-bottom:15px;">
+            🌴 Beacons :
+            <a href="https://beacons.ai/crearunmarmay" target="_blank">
+              beacons.ai/crearunmarmay
+            </a>
+          </li>
+
+          <li>
+            🎵 TikTok :
+            <a href="https://www.tiktok.com/@crearun.marmay" target="_blank">
+              @crearun.marmay
+            </a>
+          </li>
+        </ul>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#accueil">Accueil</a>
+      <a href="#produits">Catalogue</a>
+      <a href="#jeux">Jeux</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p>© 2026 Crearun Marmay – Catalogue inspiré de l’île de La Réunion 🌴</p>
+  </footer>
+
+  <script>
+    // Remplace cette adresse par ton email si tu veux recevoir les demandes.
+    const EMAIL_BOUTIQUE = "crearunmarmay@outlook.com";
+
+    const produits = [
+      {
+        id: "pack-momon-pei",
+        nom: "Pack Momon Péi",
+        categorie: "cadeau",
+        image: "https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/referenced_images/generated-images__store__product-image__ee22891f-3188-4268-bc0a-d27ccfe87990__8b7a4cf4-e752-4bd4-88b6-8b6fbbba7e93.webp?t=1779707444496",
+        description: "Diplôme Momon Péi, bons en créole à découper et livret d’activités souvenirs. Un cadeau tendre et péi à imprimer.",
+        tags: ["PDF", "Cadeau", "Momon"],
+        lien: "https://shop.beacons.ai/crearunmarmay/ee22891f-3188-4268-bc0a-d27ccfe87990?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Fcrearunmarmay&show_back_button=true"
+      },
+      {
+        id: "pack-papa-pei",
+        nom: "Pack Papa Péi",
+        categorie: "cadeau",
+        image: "https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/referenced_images/5af4fc02-d1af-4aae-85f5-07ad6f72cff4__store__product-image__2814ea32-8931-46fb-b268-bc3afcbae04e__ec609064-3b5a-4b8f-a571-3d04fedbd31b.webp?t=1781871885737",
+        description: "Diplôme Papa Péi, bons en créole à découper et livret d’activités souvenirs. Un cadeau tendre et péi à imprimer.",
+        tags: ["PDF", "Papa", "Cadeau", "Souvenirs"],
+        lien: "https://shop.beacons.ai/crearunmarmay/2814ea32-8931-46fb-b268-bc3afcbae04e?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Fcrearunmarmay&show_back_button=true"
+      },
+      {
+        id: "activites-2-4",
+        nom: "Fichier d’activité Découverte de La Réunion 2-4 ans",
+        categorie: "activite",
+        image: "https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/referenced_images/generated-images__store__product-image__84e3214a-983e-4382-a9f7-f45ae6eab81c__8191c62a-d506-479a-96f9-74c869c613ac.webp?t=1776345912682",
+        description: "Activités adaptées aux petits : graphisme, apprentissage, découverte de La Réunion et coloriage offert.",
+        tags: ["2-4 ans", "Activités", "Coloriage"],
+        lien: "https://shop.beacons.ai/crearunmarmay/84e3214a-983e-4382-a9f7-f45ae6eab81c?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Fcrearunmarmay&show_back_button=true"
+      },
+      {
+        id: "zot-y-trouve",
+        nom: "Zot y trouve ? Spécial Découverte de La Réunion",
+        categorie: "jeu",
+        image: "https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/referenced_images/dbac1dc7-5678-443c-983b-0d8651bdd26b__store__product-image__62e42a35-f4ca-4bf3-8bd7-92084a2e82f7__f2e21914-8d38-47f8-b6eb-ae435f4c075f.webp?t=1780063006345",
+        description: "Jeu d’observation et de rapidité inspiré du Dobble, revisité avec des symboles de La Réunion. 21 cartes PDF.",
+        tags: ["Jeu", "Famille", "21 cartes"],
+        lien: "https://shop.beacons.ai/crearunmarmay/62e42a35-f4ca-4bf3-8bd7-92084a2e82f7?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Fcrearunmarmay&show_back_button=true"
+      },
+      {
+        id: "quiz-pei",
+        nom: "Quiz péi — 28 fiches Questions/Réponses",
+        categorie: "jeu",
+        image: "https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/referenced_images/e665e99f-a1e9-42cc-9233-c27217d5bd42__store__product-image__c781526b-5441-45ba-9012-f39520cd83f1__95a287f0-3356-4b38-809f-da2377cb4551.webp?t=1780062964566",
+        description: "28 fiches pour tester ses connaissances sur l’histoire, la culture, les traditions et les expressions créoles.",
+        tags: ["Quiz", "28 fiches", "Culture"],
+        lien: "https://shop.beacons.ai/crearunmarmay/c781526b-5441-45ba-9012-f39520cd83f1?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Fcrearunmarmay&show_back_button=true"
+      },
+      {
+        id: "pack-organisation",
+        nom: "Pack Organisation Réunionnais",
+        categorie: "organisation",
+        image: "https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/referenced_images/d1a2f5bc-6de7-4763-a66d-ab216a5d6c10__store__product-image__d187468a-3583-40a3-b06f-e7edc45237f2__da91534d-6d0d-4d65-88be-034b937a9ef7.webp?t=1780062906505",
+        description: "Menu de la semaine, calendrier réunionnais interactif et fiche Komission offerte. Organisation 100 % péi.",
+        tags: ["Menu", "Calendrier", "Komission"],
+        lien: "https://shop.beacons.ai/crearunmarmay/d187468a-3583-40a3-b06f-e7edc45237f2?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Fcrearunmarmay&show_back_button=true"
+      },
+      {
+        id: "activites-6-10",
+        nom: "Fichier d’activité Découverte de La Réunion 6-10 ans",
+        categorie: "activite",
+        image: "https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/referenced_images/generated-images__store__product-image__e6ae0a66-60ea-476f-afa2-66306d37e64d__c15ed275-d271-4f21-a1e8-9bbe9bf321de.webp?t=1776346601371",
+        description: "Textes simples, activités créatives, jeux et mini fichier bonus pour les enfants de 6 à 10 ans.",
+        tags: ["6-10 ans", "Activités", "Bonus"],
+        lien: "https://shop.beacons.ai/crearunmarmay/e6ae0a66-60ea-476f-afa2-66306d37e64d?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Fcrearunmarmay&show_back_button=true"
+      },
+      {
+        id: "rode-lautre-pareil",
+        nom: "Rode L’Autre Pareil — Jeu de mémoire créole",
+        categorie: "jeu",
+        image: "https://cdn.beacons.ai/user_content/EYHVrZ5MIdXo2nQW2QrbODHpy8G3/referenced_images/9047aff0-634e-4aca-8b30-364ceb248039__store__product-image__bf37fd37-fe10-4d02-b335-839c13197893__665dfe1a-fcad-47b0-9db8-317ea7c6f73f.webp?t=1780062795803",
+        description: "Jeu de mémoire à imprimer avec 18 paires de cartes illustrées, mots en français et en créole réunionnais.",
+        tags: ["Mémoire", "18 paires", "Créole"],
+        lien: "https://shop.beacons.ai/crearunmarmay/bf37fd37-fe10-4d02-b335-839c13197893?pageViewSource=lib_view&referrer=https%3A%2F%2Fbeacons.ai%2Fcrearunmarmay&show_back_button=true"
+      }
+    ];
+
+    function lienRecherche(produit) {
+      return produit.lien || "https://beacons.ai/crearunmarmay";
+    }
+
+    function afficherProduits(filtre = "all") {
+      const liste = document.getElementById("product-list");
+      liste.innerHTML = "";
+
+      produits
+        .filter((produit) => filtre === "all" || produit.categorie === filtre)
+        .forEach((produit) => {
+          const card = document.createElement("article");
+          card.className = "product-card";
+          card.innerHTML = `
+            <img src="${produit.image}" alt="${produit.nom}" loading="lazy" />
+            <h3>${produit.nom}</h3>
+            <p>${produit.description}</p>
+            <div class="tags">${produit.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+            <a class="small-btn" href="${lienRecherche(produit)}" target="_blank" rel="noopener">Acheter sur Beacons 🌴</a>
+          `;
+          liste.appendChild(card);
+        });
+    }
+
+    function remplirSelectProduits() {
+      const select = document.getElementById("produit-select");
+      if (!select) return;
+      produits.forEach((produit) => {
+        const option = document.createElement("option");
+        option.value = produit.nom;
+        option.textContent = produit.nom;
+        select.appendChild(option);
+      });
+    }
+
+    function envoyerCommande(event) {
+      event.preventDefault();
+
+      const nom = document.getElementById("nom").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const produit = document.getElementById("produit-select").value;
+      const message = document.getElementById("message").value.trim();
+
+      const sujet = encodeURIComponent("Demande d’information Crearun Marmay");
+      const corps = encodeURIComponent(`Bonjour,\n\nNom : ${nom}\nEmail : ${email}\nProduit concerné : ${produit}\n\nMessage :\n${message}\n\nMerci !`);
+
+      alert("Merci ! Ton message va s’ouvrir dans ton application email.");
+      window.location.href = `mailto:${EMAIL_BOUTIQUE}?subject=${sujet}&body=${corps}`;
+      event.target.reset();
+    }
+
+    document.querySelectorAll(".filter-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+        afficherProduits(button.dataset.filter);
+      });
+    });
+
+    afficherProduits();
+    remplirSelectProduits();  </script>
+</body>
+</html>
